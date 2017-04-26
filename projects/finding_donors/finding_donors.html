@@ -12026,7 +12026,7 @@ Percentage of individuals making more than $50,000: 24.78%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Split the data into features and target label</span>
@@ -12351,7 +12351,7 @@ SXaP8WtVTZPMq2qS+zmdJTl+fBcAvJv7gb9TY4xvrwEAAPgRnjABAABtAgIAAGgTEAAAQJuAAAAA
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Log-transform the skewed features</span>
@@ -12686,7 +12686,7 @@ lt95AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import sklearn.preprocessing.StandardScaler</span>
@@ -12835,7 +12835,7 @@ lt95AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
@@ -12892,7 +12892,7 @@ lt95AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import train_test_split</span>
@@ -12964,18 +12964,28 @@ Note: You must use the code cell below and assign your results to 'accuracy' and
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span><span class="n">fbeta_score</span><span class="p">,</span>\
-                            <span class="n">recall_score</span><span class="p">,</span><span class="n">precision_score</span>
+                            <span class="n">recall_score</span><span class="p">,</span><span class="n">precision_score</span><span class="p">,</span><span class="n">confusion_matrix</span>
 <span class="c1"># TODO: Calculate accuracy</span>
 <span class="n">pred</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>  <span class="c1">#</span>
 <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">pred</span><span class="p">)</span>
-
+<span class="n">accuracy_my</span><span class="o">=</span> <span class="p">(</span><span class="n">pred</span><span class="o">==</span><span class="n">y_test</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="k">print</span> <span class="s1">&#39;accuracy=&#39;</span><span class="p">,</span><span class="n">accuracy_my</span>
 <span class="c1"># TODO: Calculate F-score using the formula above for beta = 0.5</span>
+<span class="n">confusion</span><span class="o">=</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">pred</span><span class="p">)</span>
+<span class="n">tp</span><span class="o">=</span><span class="n">confusion</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">fp</span><span class="o">=</span><span class="n">confusion</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">fn</span><span class="o">=</span><span class="n">confusion</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">precision_my</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">tp</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">fp</span><span class="p">)</span>
+<span class="n">recall_my</span><span class="o">=</span><span class="n">tp</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span>
 <span class="n">recall</span><span class="o">=</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">pred</span><span class="p">)</span>
 <span class="n">precision</span><span class="o">=</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">pred</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">confusion</span>
+<span class="k">print</span> <span class="s1">&#39;my precision:&#39;</span><span class="p">,</span><span class="n">precision_my</span>
+<span class="k">print</span> <span class="s1">&#39;my recall:&#39;</span><span class="p">,</span><span class="n">recall_my</span>
 <span class="k">print</span> <span class="s2">&quot;recall={},precision={}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">recall</span><span class="p">,</span><span class="n">precision</span><span class="p">)</span>
 
 <span class="n">beta</span><span class="o">=</span><span class="mf">0.5</span>
@@ -13001,9 +13011,74 @@ Note: You must use the code cell below and assign your results to 'accuracy' and
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>recall=1.0,precision=0.244002211166
+<pre>accuracy= 0.244002211166
+[[   0 6838]
+ [   0 2207]]
+my precision: 0.244002211166
+my recall: 1
+recall=1.0,precision=0.244002211166
 my fbeta: 0.287467111262
 Naive Predictor: [Accuracy score: 0.2440, F-score: 0.2875]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">pred</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>9045 9045
+0.244002211166
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">accuracy_my</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">y_test</span><span class="o">==</span><span class="n">pred</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">accuracy_my</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0
 </pre>
 </div>
 </div>
@@ -14227,12 +14302,8 @@ I will choose the GradientBoostingClassifier as my final learner.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong> 
 With a combination of many weak learner, it would become a strong learner which has a better performance on trining and testing set.</p>
-<h4 id="To-Layman:">To Layman:<a class="anchor-link" href="#To-Layman:">&#182;</a></h4><ul>
-<li>In the first step, this model use regression tree algorithm to train the data and we can get one hypothesis for prediction. We use this model to predict the data and get the predicted income.</li>
-<li>Secondly, the model subtract the predicted income with real income value and get the error. </li>
-<li>Thirdly, use the regression tree algorithm again to train the dataset in order to predict the error computed above.</li>
-<li>As we know the real value is the predicted value plus error. So after several iteration when we get the correct error, then plus the predicted value in the first step, we get the right model for prediction.</li>
-</ul>
+<h4 id="To-Layman:">To Layman:<a class="anchor-link" href="#To-Layman:">&#182;</a></h4><p>A gradient boosting model is a CHAIN of decision trees that also each make a vote. But instead of each learning in isolation, when you add a new one to the chain, it tries to improve a bit on what the rest of the chain already thinks. So, a new tree’s decision IS influenced by all the trees that have already voiced an opinion.<br>
+When you add a new tree to a GBM, it gets to see what its predecessors thought - and how they got it right or wrong. They then formulate a suggestion to correct the errors of their predecessors - and then they add that to the pot, and then the process continues with the next tree you add to the chain.</p>
 <h4 id="Technical-explanation:">Technical explanation:<a class="anchor-link" href="#Technical-explanation:">&#182;</a></h4><ul>
 <li><p>use a decision tree to learn the first hypothesis, to get the first prediction result</p>
 </li>
@@ -14275,7 +14346,7 @@ With a combination of many weak learner, it would become a strong learner which 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;GridSearchCV&#39;, &#39;make_scorer&#39;, and any other necessary libraries</span>
@@ -14286,7 +14357,7 @@ With a combination of many weak learner, it would become a strong learner which 
 <span class="n">clf</span><span class="o">=</span><span class="n">GradientBoostingClassifier</span><span class="p">()</span>
 
 <span class="c1"># TODO: Create the parameters list you wish to tune</span>
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:[</span><span class="mi">800</span><span class="p">,</span><span class="mi">1000</span><span class="p">],</span><span class="s1">&#39;max_features&#39;</span><span class="p">:[</span><span class="s1">&#39;auto&#39;</span><span class="p">]}</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:[</span><span class="mi">500</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1500</span><span class="p">]}</span>
 
 <span class="c1"># TODO: Make an fbeta_score scoring object</span>
 <span class="n">scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">fbeta_score</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -14317,19 +14388,6 @@ With a combination of many weak learner, it would become a strong learner which 
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">grid_obj</span><span class="o">.</span><span class="n">best_estimator_</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -14338,13 +14396,16 @@ With a combination of many weak learner, it would become a strong learner which 
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>GradientBoostingClassifier(criterion=&#39;friedman_mse&#39;, init=None,
-              learning_rate=0.1, loss=&#39;deviance&#39;, max_depth=3,
-              max_features=&#39;auto&#39;, max_leaf_nodes=None,
-              min_impurity_split=1e-07, min_samples_leaf=1,
-              min_samples_split=2, min_weight_fraction_leaf=0.0,
-              n_estimators=600, presort=&#39;auto&#39;, random_state=None,
-              subsample=1.0, verbose=0, warm_start=False)
+<pre>[0 0 0 ..., 0 0 0]
+Unoptimized model
+------
+Accuracy score on testing data: 0.8676
+F-score on testing data: 0.7481
+
+Optimized Model
+------
+Final accuracy score on the testing data: 0.8732
+Final F-score on the testing data: 0.7557
 </pre>
 </div>
 </div>
@@ -14382,13 +14443,13 @@ With a combination of many weak learner, it would become a strong learner which 
 <td style="text-align:center">Accuracy Score</td>
 <td style="text-align:center">0.244</td>
 <td style="text-align:center">0.867</td>
-<td style="text-align:center">0.874</td>
+<td style="text-align:center">0.873</td>
 </tr>
 <tr>
 <td style="text-align:center">F-score</td>
 <td style="text-align:center">0.287</td>
 <td style="text-align:center">0.748</td>
-<td style="text-align:center">0.758</td>
+<td style="text-align:center">0.755</td>
 </tr>
 </tbody>
 </table>
@@ -14403,7 +14464,7 @@ With a combination of many weak learner, it would become a strong learner which 
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
 The optimized model's accuracy and f0.5 score are both better than unoptimized model.<br>
-Compared with the naive predictor, the optimized model increase the acuracy by 0.63 and increase the f-score by 0.471.</p>
+Compared with the naive predictor, the optimized model increase the acuracy by 0.629 and increase the f-score by 0.468.</p>
 
 </div>
 </div>
