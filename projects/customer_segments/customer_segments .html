@@ -11830,6 +11830,7 @@ div#notebook {
     <span class="k">print</span> <span class="s2">&quot;Wholesale customers dataset has {} samples with {} features each.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="k">print</span> <span class="s2">&quot;Dataset could not be loaded. Is the dataset missing?&quot;</span>
+    
 </pre></div>
 
 </div>
@@ -21519,16 +21520,19 @@ After displaying sample log-data after applying PCA transformation in two dimens
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong>
-I will design 4 A/B tests in this situation.<br>
-The control group will be the original situation.<br>
-Four experimental groups are setted as below.</p>
+<p><strong>Answer:</strong><br>
+I will design 3 A/B tests in this situation.<br>
+Firstly, I need to randomly choose 40 customer and divide them into 4 groups.<br>
+Then, set one group as control group, 3 groups as experimental groups.</p>
+<p><strong>Control group</strong> will be setted as original service, that all the customer receive the customer service 5 days a week.<br>
+<strong>Three experimental groups</strong> are setted as below.</p>
 <ol>
-<li>provide the delivery service 5 days a week for cluster 1, and 5 days a week for cluster 2.</li>
 <li>provide the delivery service 5 days a week for cluster 1, and 3 days a week for cluster 2.</li>
 <li>provide the delivery service 3 days a week for cluster 1, and 5 days a week for cluster 2.</li>
 <li>provide the delivery service 3 days a week for cluster 1, and 3 days a week for cluster 2.</li>
 </ol>
+<p>If variable customers in experimental group1 react positively, then we can apply the method used in experimental group1. Likewise, for experimental group 2 and 3.<br>
+If all the variable customers in experimental group react negatively, then we will retain the original delivery method.</p>
 
 </div>
 </div>
