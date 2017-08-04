@@ -14544,7 +14544,7 @@ This number of trails makes sense.<br>
 Given epsilon-tolerance decreases 0.05 per trail, it becomes 0 after 20 trails. As a result, the agent will stop doing exploration but exploitation.  </li>
 <li>Yes, the decaying function for the exploration factor is correctly implemented. As the exploration factor decreases linearly.</li>
 <li>As the training trails increased, the number of bad actions decreased gradually. The Average reward also increased. It means the Q table was being updated, so the agent gradually knows which action to do.  </li>
-<li>The reliability changes to A means the agent could successfully arrive at the destination.<br>
+<li>The reliability is still F means it still cannot reach its destination with limited 20 training trails, we cannot explore enough state so the q table is not sophesticated enough to help us make the decision
 The safety changes to F means there exists too much bad actions.</li>
 </ol>
 
