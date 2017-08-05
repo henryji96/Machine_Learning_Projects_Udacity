@@ -16116,8 +16116,8 @@ AywzMzMzM7MmcYBlZmZmZmbWJA6wzMzMzMzMmuT/A5GeXCKu3iyHAAAAAElFTkSuQmCC
 <p><strong>Answer:</strong></p>
 <ol>
 <li>the decaying exponential function with a = 0.01<br>
-This function will keep self.epsilon bigger than epsilon tolerance for as long as you wish your agent to explore, and then drop self.epsilon to below the tolerance level for testing to begin. This way I can  guarantee that the agent is exploring as much as possible of the state space until the time comes for it to be tested.</li>
-<li>350 training trails, then the reward become constant.</li>
+This function will cause self.epsilon an exponential decay. It will keep epsilon bigger than epsilon tolerance for sometime so that agent could explore unknown states, and then drop self.epsilon to below the tolerance level for testing to begin. </li>
+<li>It needs 1000 training trails.</li>
 <li>I used epsilon tolerance 0.01,which can balance the explaration and exploitation.<br>
 The alpha is 0.5, so it combines the past experience and new experience with the same weight.</li>
 <li>The safty and realibility rating all become A+, which means the car runs pretty well.</li>
@@ -16191,8 +16191,10 @@ state = (waypoint,light,left, oncoming)</p>
 </tbody>
 </table>
 <ol>
-<li>Not all policies are correct. For example, the following one. The waypoint is left, however, the agent will go right.<br>
-<code>('left', 'red', 'left', 'forward') -- forward : -35.82 -- None : 1.94 -- right : 0.71 -- left : -7.31</code>  </li>
+<li>Not all policies are correct. For example, the following one.The forward and the right are all 0, so the agent may randomly choose one of these two actions.</li>
+</ol>
+<p><code>('forward', 'red', 'left', 'forward') -- forward : 0.00 -- None : 1.93 -- right : 0.00 -- left : -4.87</code></p>
+<ol>
 <li>The following examples' policies are correct. With the agent chosing the action with highest Q value, it gets closer to the destination successfully without violating the traffic rule.  </li>
 </ol>
 <p>`
