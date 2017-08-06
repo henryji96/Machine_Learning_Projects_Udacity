@@ -16191,11 +16191,11 @@ state = (waypoint,light,left, oncoming)</p>
 </tbody>
 </table>
 <ol>
-<li>Not all policies are correct. For example, the following one.The forward and the right are all 0, so the agent may randomly choose one of these two actions.</li>
-</ol>
-<p><code>('forward', 'red', 'left', 'forward') -- forward : 0.00 -- None : 1.93 -- right : 0.00 -- left : -4.87</code></p>
-<ol>
-<li>The following examples' policies are correct. With the agent chosing the action with highest Q value, it gets closer to the destination successfully without violating the traffic rule.  </li>
+<li><p>Not all policies are correct. For example, the following one is a suboptimal policy. The waypoint is on the left, however, the agent turns to the right.
+<code>('left', 'green', 'right', 'forward') -- forward : -0.01 -- None : 0.00 -- right : 1.01 -- left : -15.19</code></p>
+</li>
+<li><p>The following examples' policies are correct. With the agent chosing the action with highest Q value, it gets closer to the destination successfully without violating the traffic rule.</p>
+</li>
 </ol>
 <p>`
 ('left', 'green', 'forward', 'left')
