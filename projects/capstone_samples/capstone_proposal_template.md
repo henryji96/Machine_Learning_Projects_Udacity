@@ -1,13 +1,15 @@
 # Machine Learning Engineer Nanodegree
 ## Capstone Proposal
-Joe Udacity  
-December 31st, 2050
+Wenhan Ji
+December 7th, 2017
 
 ## Proposal
-_(approx. 2-3 pages)_
-
+  In my capstone, I do the kaggle competition [New York City Taxi Trip Duration](https://www.kaggle.com/c/nyc-taxi-trip-duration).
+  
+  
 ### Domain Background
-_(approx. 1-2 paragraphs)_
+
+In this competition, Kaggle is challenging you to build a model that predicts the total ride duration of taxi trips in New York City.
 
 In this section, provide brief details on the background information of the domain from which the project is proposed. Historical information relevant to the project should be included. It should be clear how or why a problem in the domain can or should be solved. Related academic research should be appropriately cited in this section, including why that research is relevant. Additionally, a discussion of your personal motivation for investigating a particular problem in the domain is encouraged but not required.
 
@@ -17,7 +19,10 @@ _(approx. 1 paragraph)_
 In this section, clearly describe the problem that is to be solved. The problem described should be well defined and should have at least one relevant potential solution. Additionally, describe the problem thoroughly such that it is clear that the problem is quantifiable (the problem can be expressed in mathematical or logical terms) , measurable (the problem can be measured by some metric and clearly observed), and replicable (the problem can be reproduced and occurs more than once).
 
 ### Datasets and Inputs
-_(approx. 2-3 paragraphs)_
+
+[The competition dataset](https://www.kaggle.com/c/nyc-taxi-trip-duration/data) is based on the 2016 NYC Yellow Cab trip record data made available in Big Query on Google Cloud Platform. The data was originally published by the NYC Taxi and Limousine Commission (TLC). The data was sampled and cleaned for the purposes of this playground competition. Based on individual trip attributes, participants should predict the duration of each trip in the test set.
+
+Additionally, in the competition, we can use  datasets from different sources to add features. I use the [2016 NYC Whether Data](https://www.kaggle.com/mathijs/weather-data-in-new-york-city-2016). I believe that the whether condition will affect the trip duration.
 
 In this section, the dataset(s) and/or input(s) being considered for the project should be thoroughly described, such as how they relate to the problem and why they should be used. Information such as how the dataset or input is (was) obtained, and the characteristics of the dataset or input, should be included with relevant references and citations as necessary It should be clear how the dataset(s) or input(s) will be used in the project and whether their use is appropriate given the context of the problem.
 
