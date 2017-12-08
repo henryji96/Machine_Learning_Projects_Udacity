@@ -11775,26 +11775,32 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Machine-Learning-Engineer-Nanodegree">Machine Learning Engineer Nanodegree<a class="anchor-link" href="#Machine-Learning-Engineer-Nanodegree">&#194;&#182;</a></h1><h2 id="Capstone-Proposal">Capstone Proposal<a class="anchor-link" href="#Capstone-Proposal">&#194;&#182;</a></h2><p>Wenhan Ji
+<h1 id="Machine-Learning-Engineer-Nanodegree">Machine Learning Engineer Nanodegree<a class="anchor-link" href="#Machine-Learning-Engineer-Nanodegree">&#182;</a></h1><h2 id="Capstone-Proposal">Capstone Proposal<a class="anchor-link" href="#Capstone-Proposal">&#182;</a></h2><p>Wenhan Ji
 December 7th, 2017</p>
-<h2 id="Proposal">Proposal<a class="anchor-link" href="#Proposal">&#194;&#182;</a></h2><p>In my capstone, I do the kaggle competition <a href="https://www.kaggle.com/c/nyc-taxi-trip-duration">New York City Taxi Trip Duration</a>.</p>
-<h3 id="Domain-Background">Domain Background<a class="anchor-link" href="#Domain-Background">&#194;&#182;</a></h3><p>Kaggle is a platform for predictive modelling and analytics competitions in which statisticians and data miners compete to produce the best models for predicting and describing the datasets uploaded by companies and users. This crowdsourcing approach relies on the fact that there are countless strategies that can be applied to any predictive modelling task and it is impossible to know beforehand which technique or analyst will be most effective.</p>
+<h2 id="Proposal">Proposal<a class="anchor-link" href="#Proposal">&#182;</a></h2><p>In my capstone, I do the kaggle competition <a href="https://www.kaggle.com/c/nyc-taxi-trip-duration">New York City Taxi Trip Duration</a>.</p>
+<h3 id="Domain-Background">Domain Background<a class="anchor-link" href="#Domain-Background">&#182;</a></h3><p>Kaggle is a platform for predictive modelling and analytics competitions in which statisticians and data miners compete to produce the best models for predicting and describing the datasets uploaded by companies and users. This crowdsourcing approach relies on the fact that there are countless strategies that can be applied to any predictive modelling task and it is impossible to know beforehand which technique or analyst will be most effective.</p>
 <ol>
 <li>The competition host prepares the data and a description of the problem. Kaggle offers a consulting service which can help the host do this, as well as frame the competition, anonymize the data, and integrate the winning model into their operations.</li>
 <li>Participants experiment with different techniques and compete against each other to produce the best models. Work is shared publicly through Kaggle Scripts to achieve a better benchmark and to inspire new ideas. Submissions are made through Scripts or through private manual upload. For most competitions, submissions are scored immediately (based on their predictive accuracy relative to a hidden solution file) and summarized on a live leaderboard.</li>
 </ol>
-<h3 id="Problem-Statement">Problem Statement<a class="anchor-link" href="#Problem-Statement">&#194;&#182;</a></h3><p>In this competition, Kaggle is challenging you to build a model that predicts the total ride duration of taxi trips in New York City. Your primary dataset is one released by the NYC Taxi and Limousine Commission, which includes pickup time, geo-coordinates, number of passengers, and several other variables.</p>
+<blockquote><p>Kaggle is a very popular data scientist community. The first time I knew it is through Udacity's Introduction to Machine Learning Course. Then I search it on the Internet, reading some competition description. I also joined in some Facebook and Wechat kaggle competition groups, where kagglers often have a heated discussion on those machine learning tools and algorithms. Impressed by them, I also want to step into this world.
+Also, in China, if you rank high in kaggle competition, you will get more chance to get the job interview.</p>
+</blockquote>
+<p>As to taxi duration prediction problem, some work can be found on the Internet.<br>
+<a href="http://cs229.stanford.edu/proj2016/report/AntoniadesFadaviFobaAmonJuniorNewYorkCityCabPricing-report.pdf">Fare and Duration Prediction: A Study of New York City Taxi Rides</a>
+<a href="https://link.springer.com/chapter/10.1007/978-3-319-24465-5_18">Using Metalearning for Prediction of Taxi Trip Duration Using Different Granularity Levels</a></p>
+<h3 id="Problem-Statement">Problem Statement<a class="anchor-link" href="#Problem-Statement">&#182;</a></h3><p>In this competition, Kaggle is challenging you to build a model that predicts the total ride duration of taxi trips in New York City. Your primary dataset is one released by the NYC Taxi and Limousine Commission, which includes pickup time, geo-coordinates, number of passengers, and several other variables.</p>
 <p>It's a regression probrem that you can try different regression algorithms to train the model and do the prediction on test set. Your goal is to train the model that the prediction on test set will have the lowest loss.</p>
-<h3 id="Datasets-and-Inputs">Datasets and Inputs<a class="anchor-link" href="#Datasets-and-Inputs">&#194;&#182;</a></h3><p><a href="https://www.kaggle.com/c/nyc-taxi-trip-duration/data">The competition dataset</a> is based on the 2016 NYC Yellow Cab trip record data made available in Big Query on Google Cloud Platform. The data was originally published by the NYC Taxi and Limousine Commission (TLC). The data was sampled and cleaned for the purposes of this playground competition. Based on individual trip attributes, participants should predict the duration of each trip in the test set.</p>
+<h3 id="Datasets-and-Inputs">Datasets and Inputs<a class="anchor-link" href="#Datasets-and-Inputs">&#182;</a></h3><p><a href="https://www.kaggle.com/c/nyc-taxi-trip-duration/data">The competition dataset</a> is based on the 2016 NYC Yellow Cab trip record data made available in Big Query on Google Cloud Platform. The data was originally published by the NYC Taxi and Limousine Commission (TLC). The data was sampled and cleaned for the purposes of this playground competition. Based on individual trip attributes, participants should predict the duration of each trip in the test set.</p>
 <p>Additionally, in the competition, we can use  datasets from different sources to add features. I use the <a href="https://www.kaggle.com/mathijs/weather-data-in-new-york-city-2016">2016 NYC Whether Data</a>. I believe that the whether condition will affect the trip duration.</p>
-<h3 id="Solution-Statement">Solution Statement<a class="anchor-link" href="#Solution-Statement">&#194;&#182;</a></h3><p>I will use the XGBoost serve as the regression model.<br>
+<h3 id="Solution-Statement">Solution Statement<a class="anchor-link" href="#Solution-Statement">&#182;</a></h3><p>I will use the XGBoost serve as the regression model.<br>
 XGBoost is short for “Extreme Gradient Boosting”, where the term “Gradient Boosting” is proposed in the paper Greedy Function Approximation: A Gradient Boosting Machine, by Friedman. XGBoost is based on this original model. This is a tutorial on gradient boosted trees, and most of the content is based on these <a href="https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf">slides</a> by the author of xgboost.</p>
-<h3 id="Benchmark-Model">Benchmark Model<a class="anchor-link" href="#Benchmark-Model">&#194;&#182;</a></h3><ol>
+<h3 id="Benchmark-Model">Benchmark Model<a class="anchor-link" href="#Benchmark-Model">&#182;</a></h3><ol>
 <li>linear regression model</li>
 <li>k nearest neighbour regression model</li>
 <li>Gradient Boosting Regressor with n_estimators=100</li>
 </ol>
-<h3 id="Evaluation-Metrics">Evaluation Metrics<a class="anchor-link" href="#Evaluation-Metrics">&#194;&#182;</a></h3><p>The evaluation metric for this competition is Root Mean Squared Logarithmic Error.
+<h3 id="Evaluation-Metrics">Evaluation Metrics<a class="anchor-link" href="#Evaluation-Metrics">&#182;</a></h3><p>The evaluation metric for this competition is Root Mean Squared Logarithmic Error.
 <img style="width:30%" src="evaluation_metrics.png" /></p>
 <p>Where:<br>
 ϵ is the RMSLE value (score)<br>
@@ -11802,7 +11808,7 @@ n is the total number of observations in the (public/private) data set<br>
 pi is your prediction of trip duration<br>
 ai is the actual trip duration for i<br>
 log⁡(x) is the natural logarithm of x</p>
-<h3 id="Project-Design">Project Design<a class="anchor-link" href="#Project-Design">&#194;&#182;</a></h3><ol>
+<h3 id="Project-Design">Project Design<a class="anchor-link" href="#Project-Design">&#182;</a></h3><ol>
 <li>Figure out the problem and download the training and testing dataset.</li>
 <li>Compute and create new features based on existing features</li>
 <li>Visualize features to do the exploratory data analysis and data cleaning</li>
