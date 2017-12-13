@@ -12068,7 +12068,12 @@ Finally, we can train the XGBoost model.</p>
 <li>K Neighbors Regressor: Root Mean Squared Logarithmic Error= 0.073</li>
 <li>Random Forest Regressor: Root Mean Squared Logarithmic Error= 0.047</li>
 </ol>
+<blockquote><p>The benchmark model's loss on test set makes sense. The linear model and KNN's error is high because it suffer from the bias problem. The models are too simple that it can not fit the training data well.<br>
+The random forest model performs better than previous 2 as the bootstrapping procedure decreases the variance of the model.</p>
+</blockquote>
 <h4 id="XGBoost-model:">XGBoost model:<a class="anchor-link" href="#XGBoost-model:">&#194;&#182;</a></h4><p>Root Mean Squared Logarithmic Error= 0.044</p>
+<blockquote><p>The prediction error on test set is lower than all benchmark model thanks to the good generalization ability of xgboost.</p>
+</blockquote>
 <p>The graph below shows the traing and testing loss seperately with training rounds increase.<br>
 We can figure out the after 100 rounds, the error decrease very slowly.<br>
 The traing error decreases faster than testing error. As the gap is small, so the overfitting problem is small.<br>
