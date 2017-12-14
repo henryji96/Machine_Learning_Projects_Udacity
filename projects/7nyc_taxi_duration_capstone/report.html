@@ -12029,9 +12029,16 @@ The rmsle_eval function is used to evaluate the XGBoost model performance.<br>
 <li>Random Forest Regressor with n_estimators=10
 <img style="width:80%" src="images/rf.jpg" />  </li>
 </ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="XGBoost-model:">XGBoost model:<a class="anchor-link" href="#XGBoost-model:">&#194;&#182;</a></h4><p>First we have to define the parameters of XGBoost:
-<a href="https://github.com/dmlc/xgboost/blob/master/doc/parameter.md">Here is the tutorial for parameters tuning</a>
-<img style="width:30%" src="images/xgb_params.jpg" /></p>
+<a href="https://github.com/dmlc/xgboost/blob/master/doc/parameter.md">Here is the tutorial for parameters tuning</a></p>
 <blockquote><ul>
 <li><strong>eta</strong> [default=0.3, alias: learning_rate]<br>
 step size shrinkage used in update to prevents overfitting. After each boosting step, we can directly get the weights of new features. and eta actually shrinks the feature weights to make the boosting process more conservative.</li>
@@ -12045,10 +12052,44 @@ subsample ratio of columns when constructing each tree.</li>
 maximum depth of a tree, increase this value will make the model more complex / likely to be overfitting. 0 indicates no limit, limit is required for depth-wise grow policy.</li>
 </ul>
 </blockquote>
-<p>Then to set the training and testing data into DMetrix format needed by XGBoost package.
-<img style="width:50%" src="images/xgb_dmetrix.jpg" /> 
-Finally, we can train the XGBoost model.</p>
-<p><img style="width:50%" src="images/xgb.jpg" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="XGBoost-model:">XGBoost model:<a class="anchor-link" href="#XGBoost-model:">&#194;&#182;</a></h4><h4 id="Plot-validation-curve-to-tune-parameters:">Plot validation curve to tune parameters:<a class="anchor-link" href="#Plot-validation-curve-to-tune-parameters:">&#194;&#182;</a></h4><p>Here we should re-define our rmsle function that return the negative error. In this way, validation_curve will return the parameters that has the lowest error on validation set.<br>
+<img style="width:50%" src="images/error2.jpg" /></p>
+<p>Plot validation curve with the help of validation_curve function from sklearn.</p>
+<blockquote><ol>
+<li>Tune <strong>max_depth</strong> parameter:<br>
+It will fix other parameters except for max_depth. Then, the function will separately train the model with max_depth equal to 1,25,50,75,100. It will return the negative rmsle for each trail.
+<img style="width:60%" src="images/md.jpg" />
+<img style="width:60%" src="images/md_p.jpg" />
+We can find that at the beginning when max_depth increase, the negative error will increase. But the max_depth reaches 25 and keep increasing, it makes little effect on the error decrease. The highest negative error is when max_depth=25.</li>
+<li>Tune <strong>subsample</strong> parameter:<br>
+It will fix other parameters except for subsample. Then, the function will separately train the model with subsample equal to 0,0.25,0.5,0.75,1.0. It will return the negative rmsle for each trail.
+<img style="width:60%" src="images/sub.jpg" />
+<img style="width:60%" src="images/sub_p.jpg" />
+We can find that at the beginning when subsample increase, the negative error will increase. But the subsample reaches 0.25 and keep increasing, it makes little effect on the error decrease. The highest negative error is when subsample=0.75.</li>
+</ol>
+</blockquote>
+<p>In conclusion, the model performs best when max_depth=25 and subsample=0.75.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Train-the-final-XGBoost-model">Train the final XGBoost model<a class="anchor-link" href="#Train-the-final-XGBoost-model">&#194;&#182;</a></h4><p>Set the training and testing data into DMetrix format needed by XGBoost package.
+<img style="width:50%" src="images/xgb_dmetrix.jpg" /></p>
+<p>Train the final XGBoost model.</p>
+<p><img style="width:50%" src="images/train1.jpg" />
+<img style="width:50%" src="images/train2.jpg" /></p>
 <blockquote><ul>
 <li><strong>evals_result</strong> use the root mean squared log error we defined above</li>
 <li><strong>early stopping</strong> will monitor test-rmsle, the model will train until test-rmsle hasn't improved in 10 rounds.</li>
@@ -12071,14 +12112,40 @@ Finally, we can train the XGBoost model.</p>
 <blockquote><p>The benchmark model's loss on test set makes sense. The linear model and KNN's error is high because it suffer from the bias problem. The models are too simple that it can not fit the training data well.<br>
 The random forest model performs better than previous 2 as the bootstrapping procedure decreases the variance of the model.</p>
 </blockquote>
-<h4 id="XGBoost-model:">XGBoost model:<a class="anchor-link" href="#XGBoost-model:">&#194;&#182;</a></h4><p>Root Mean Squared Logarithmic Error= 0.044</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="XGBoost-model">XGBoost model<a class="anchor-link" href="#XGBoost-model">&#194;&#182;</a></h4><p>Root Mean Squared Logarithmic Error= 0.044</p>
 <blockquote><p>The prediction error on test set is lower than all benchmark model thanks to the good generalization ability of xgboost.</p>
 </blockquote>
 <p>The graph below shows the traing and testing loss seperately with training rounds increase.<br>
 We can figure out the after 100 rounds, the error decrease very slowly.<br>
-The traing error decreases faster than testing error. As the gap is small, so the overfitting problem is small.<br>
-And it can also be concluded that this model generalize well due to the small prediction loss on test set. So the model can generalize well.
-<img style="width:50%" src="images/results.jpg" /></p>
+The traing error decreases faster than testing error. But the gap is not very big.</p>
+<p><img style="width:60%" src="images/results.jpg" /></p>
+<p>We can also see the feature importance of our final model.
+<img style="width:80%" src="images/fi.jpg" />
+From the feature importance plot, we can figure out that the features related to dropoff and pickup location are very important to help us predict the taxi trip duration.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Do-cross-validation-to-find-whether-the-model-will-generalize-well:">Do cross validation to find whether the model will generalize well:<a class="anchor-link" href="#Do-cross-validation-to-find-whether-the-model-will-generalize-well:">&#194;&#182;</a></h4><p>The parameters will use the same as our final training model
+<img style="width:30%" src="images/params.jpg" />
+The code of doing cross validation is below. I used the cv function from XGBoost official python API.<br>
+For every round, it will do 3-fold cross validation and return the mean of training and validation set rmsle separately.<br>
+<img style="width:60%" src="images/cv.jpg" /></p>
+<p>From the plot of mean rmsle of each rounds' 3-fold cross validation, we can see that the lowest rmsle on <strong>validation set</strong> is around 0.044, which is equal to our final XGBoost model's performance. From the low validation set error, we can conclude that our model can generalize well.
+<img style="width:60%" src="images/cv2.jpg" /> 
+<img style="width:60%" src="images/cv1.jpg" /></p>
 
 </div>
 </div>
